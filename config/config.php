@@ -9,7 +9,7 @@ define("HOST", "localhost");
 define("DB_NAME", "dathen");
 define("DB_USER", "root");
 define("DB_PASS", "");
-define('ROOT', 'D:/Dev/Software/xampp/htdocs/ordersystem');
+define('ROOT', 'C:/xampp/htdocs/ordersystem');
 //Thu muc tuyet doi truoc cua config; c:/wamp/www/lab/
 define("BASE_URL", "http://".$_SERVER['SERVER_NAME']);//dia chi website
 ?>

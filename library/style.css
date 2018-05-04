@@ -1,0 +1,60 @@
+body,html{margin:0;padding:0;width:100%;height:auto;}
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
+ /* SIDEBAR CSS */
+ .sidebar-username-information {
+    background-color: #9d9d9d;
+    text-align: center;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+}
+span.option-user {
+    float: right;
+    padding-right: 2%;
+}
+.sidebar-show-option-user {
+    background-color: #def7ff;
+    padding-left: 5%;
+    padding-bottom: 1%;
+    padding-top: 5%;
+}
+.sidebar-show-option-user a {
+    color: black;
+    font-weight: 400;
+    text-decoration:none;
+}
+.sidebar-left-menu a {
+    color: #545454;
+    text-decoration: none;
+}
+.sidebar-left-menu {
+    padding-left: 0%;
+}
+.sidebar-left-menu p:hover {
+    background-color: #d0d0d0;
+    transition: 1s ease all;
+}
+.sidebar-left-menu p {
+    height: 45px;
+    line-height: 45px;
+    padding-left: 5%;
+    margin-bottom: 0;
+}
+span.sidebar-menu-option {
+    float: right;
+    padding-right: 8%;
+}
+.container-content {
+    padding-top: 1%;
+}
+
+td.details-control {
+    background: url('http://next.datatables.net/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('http://next.datatables.net/examples/resources/details_close.png') no-repeat center center;
+}
