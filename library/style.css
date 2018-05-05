@@ -58,3 +58,7 @@ td.details-control {
 tr.shown td.details-control {
     background: url('http://next.datatables.net/examples/resources/details_close.png') no-repeat center center;
 }
+.table-content th {
+    vertical-align: middle !important;
+    text-align: center;
+}

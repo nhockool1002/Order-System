@@ -2,58 +2,87 @@ $(document).ready(function(){
    $(".option-user").click(function(){
        $(".sidebar-show-option-user").toggle("slowly");
    });
+   $.get('ajax/getdata.php',function(data){
+    var obj = JSON.parse(data);
+    var result = {};
+    obj.map(function(e){
+    result[e.id] = e.tenbenh;
+    });
+    var myObj = JSON.stringify(result);
+    document.getElementById("test").innerHTML = myObj;
 });
-/* Formatting function for row details - modify as you need */
-function format ( d ) {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Full name:</td>'+
-            '<td>'+d.name+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extension number:</td>'+
-            '<td>'+d.extn+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
-    '</table>';
+});
+var myObj;
+function viewData(){
+    $.ajax({
+        url: 'ajax/process.php?p=view',
+        method: 'GET'
+    }).done(function(data){
+        $('tbody').html(data)
+        tableData()
+    })
 }
- 
-$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        "ajax": "ajax/data/objects.txt",
-        "columns": [
-            {
-                "className":      'details-control',
-                "orderable":      false,
-                "data":           null,
-                "defaultContent": ''
+
+
+function tableData(){
+    $.get('ajax/getdata.php',function(data){
+        var obj = JSON.parse(data);
+        var result = {};
+        obj.map(function(e){
+        result[e.id] = e.tenbenh;
+        });
+        var myObj = JSON.stringify(result);
+        document.getElementById("test").innerHTML = myObj;
+   
+        $('#tabledit').Tabledit({
+            url: 'ajax/process.php',
+            eventType: 'dblclick',
+            editButton: true,
+            deleteButton: true,
+            hideIdentifier: false,
+            buttons: {
+                edit: {
+                    class: 'btn btn-sm btn-warning',
+                    html: '<span class="glyphicon glyphicon-pencil"></span> Edit',
+                    action: 'edit'
+                },
+                delete: {
+                    class: 'btn btn-sm btn-danger',
+                    html: '<span class="glyphicon glyphicon-trash"></span> Trash',
+                    action: 'delete'
+                },
+                save: {
+                    class: 'btn btn-sm btn-success',
+                    html: 'Save'
+                },
+                restore: {
+                    class: 'btn btn-sm btn-warning',
+                    html: 'Restore',
+                    action: 'restore'
+                },
+                confirm: {
+                    class: 'btn btn-sm btn-default',
+                    html: 'Confirm'
+                }
             },
-            { "data": "name" },
-            { "data": "position" },
-            { "data": "office" },
-            { "data": "salary" }
-        ],
-        "order": [[1, 'asc']]
-    } );
-     
-    // Add event listener for opening and closing details
-    $('#example tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
- 
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child( format(row.data()) ).show();
-            tr.addClass('shown');
-        }
-    } );
-} );
+            columns: {
+                identifier: [1, 'id'],
+                editable: [[2, 'hoten'],[3, 'dienthoai'],[4, 'masokham'],[5, 'thoigiandangky'],[6, 'thoigiandathen'],[7, 'thoigiandenkham'],[8, 'test', myObj ]]
+            },
+            onSuccess: function(data, textStatus, jqXHR) {
+                viewData()
+            },
+            onFail: function(jqXHR, textStatus, errorThrown) {
+                console.log('onFail(jqXHR, textStatus, errorThrown)');
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
+            onAjax: function(action, serialize) {
+                console.log('onAjax(action, serialize)');
+                console.log(action);
+                console.log(serialize);
+            }
+        });
+    });
+}
