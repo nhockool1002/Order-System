@@ -62,3 +62,15 @@ tr.shown td.details-control {
     vertical-align: middle !important;
     text-align: center;
 }
+table#tabledit {
+    font-size: 10px !important;
+}
+input.tabledit-input.form-control {
+    font-size: 10px !important;
+}
+select.tabledit-input.form-control {
+    font-size: 10px !important;
+}
+table#tabledit td {
+    vertical-align: middle !important;
+}

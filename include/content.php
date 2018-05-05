@@ -21,5 +21,4 @@
             </thead>
             <tbody></tbody>
         </table>
-        <div id="test">A</div>
     </div>
