@@ -23,13 +23,15 @@ $(document).ready(function(){
     });
    });
    /* AJAX THÊM LOẠI BỆNH */
-   $('.submit-addbenh').click(function(){
+   $('.submit-addbenh').click(function(e){
     e.preventDefault();
     var tenbenh = $('.tenbenh').val();
     $.get("ajax/ajax-addbenh.php",{tenbenh:tenbenh},function(data){
         if(data == 1){
             $('.state-message-loaibenh').html('<span class="purple-message"> Đã thêm dữ liệu này vào Cơ sở dữ liệu</span>');
-            header( "Refresh:2; url=index.php", true, 303);
+            setTimeout(function(){
+                window.location.replace("index.php?page=themloaibenh");
+            },3000);
         }
     });
    });
