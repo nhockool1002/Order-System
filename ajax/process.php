@@ -5,7 +5,7 @@ spl_autoload_register("loadClass");
 $obj = new Db();
 $page = isset($_GET['p'])? $_GET['p'] : '' ;
 if($page=='view'){
-    $sql = "SELECT bangnhap.id as id, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `chiphi`, `trangthai`, `chat`, `deleted`,tenbacsi as tenbacsi, tenbenh as tenloaibenh, user as tennguoidung, tennguonden as tennguonden, tenphuongthuc as tenphuongthuc FROM bangnhap INNER JOIN bacsi ON bangnhap.id_bacsi = bacsi.id INNER JOIN loaibenh ON bangnhap.id_loaibenh = loaibenh.id INNER JOIN nguoidung ON bangnhap.id_nguoidung = nguoidung.id INNER JOIN nguonden ON bangnhap.id_nguonden = nguonden.id INNER JOIN phuongthuc ON bangnhap.id_phuongthuc = phuongthuc.id WHERE bangnhap.deleted != '1'";
+    $sql = "SELECT bangnhap.id as id, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `chiphi`, `trangthai`, `chat`, `deleted`,tenbacsi as tenbacsi, tenbenh as tenloaibenh, user as tennguoidung, tennguonden as tennguonden, tenphuongthuc as tenphuongthuc FROM bangnhap INNER JOIN bacsi ON bangnhap.id_bacsi = bacsi.id INNER JOIN loaibenh ON bangnhap.id_loaibenh = loaibenh.id INNER JOIN nguoidung ON bangnhap.id_nguoidung = nguoidung.id INNER JOIN nguonden ON bangnhap.id_nguonden = nguonden.id INNER JOIN phuongthuc ON bangnhap.id_phuongthuc = phuongthuc.id WHERE bangnhap.deleted != '1' ORDER BY bangnhap.id DESC";
     $rows = $obj->select($sql);
    foreach($rows as $row){
         ?>
@@ -23,7 +23,7 @@ if($page=='view'){
             <td><?php echo $row['tennguoidung'] ?></td>
             <td><?php echo $row['tennguonden'] ?></td>
             <td><?php echo $row['tenphuongthuc'] ?></td>
-            <td><?php echo $row['chiphi'] ?></td>
+            <td><?php if($row['chiphi'] == NULL){echo $row['chiphi'];}else echo number_format($row['chiphi']); ?></td>
             <td><?php echo $row['trangthai'] ?></td>
         </tr>
         <?php
@@ -40,7 +40,39 @@ if($page=='view'){
 
 
     if ($input['action'] == 'edit') {
-        $mysqli->query("UPDATE tabledit SET name='" . $input['name'] . "', gender='" . $input['gender'] . "', email='" . $input['email'] . "', phone='" . $input['phone'] . "', address='" . $input['address'] . "' WHERE id='" . $input['id'] . "'");
+        $obj = new Db();
+        $sql = "UPDATE `bangnhap` 
+                SET `hoten`= :hoten, 
+                    `dienthoai` = :dienthoai,
+                    `masokham` = :masokham,
+                    `thoigiandathen` = :thoigiandathen,
+                    `thoigiandenkham` = :thoigiandenkham,
+                    `id_loaibenh` = :loaibenh,
+                    `id_bacsi` = :bacsi,
+                    `id_nguonden` = :nguonden,
+                    `id_phuongthuc` = :phuongthuc,
+                    `chiphi` = :chiphi
+                WHERE `id` = :id";
+        $arr[":id"] = $input['id'];
+        $arr[":chiphi"] = $input['chiphi'];
+        $arr[":phuongthuc"] = $input['phuongthuc'];
+        $arr[":nguonden"] = $input['nguonden'];
+        $arr[":bacsi"] = $input['bacsi'];
+        $arr[":loaibenh"] = $input['loaibenh'];
+        if($input['thoigiandathen'] == ""){
+            $arr[":thoigiandathen"] = NULL;
+        }else{
+            $arr[":thoigiandathen"] = $input['thoigiandathen'];
+        }
+        if($input['thoigiandenkham'] == ""){
+            $arr[":thoigiandenkham"] = NULL;
+        }else{
+            $arr[":thoigiandenkham"] = $input['thoigiandenkham'];
+        }
+        $arr[":masokham"] = $input['masokham'];
+        $arr[":dienthoai"] = $input['dienthoai'];
+        $arr[":hoten"] = $input['hoten'];
+        $obj->select($sql, $arr);
     } else if ($input['action'] == 'delete') {
         $mysqli->query("UPDATE tabledit SET deleted=1 WHERE id='" . $input['id'] . "'");
     } else if ($input['action'] == 'restore') {

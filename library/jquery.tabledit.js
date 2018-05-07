@@ -26,7 +26,7 @@ if (typeof jQuery === 'undefined') {
 
         var defaults = {
             url: window.location.href,
-            inputClass: 'form-control input-sm',
+            inputClass: 'form-control input-sm kangcode',
             toolbarClass: 'btn-toolbar',
             groupClass: 'btn-group btn-group-sm',
             dangerClass: 'danger',
