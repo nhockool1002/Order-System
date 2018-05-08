@@ -2,10 +2,18 @@
 include ("../config/config.php");
 include ROOT."/include/functions.php";
 spl_autoload_register("loadClass");
+
+$mysqli = new mysqli('localhost', 'root', '', 'dathen');
+
+if (mysqli_connect_errno()) {
+  echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
+  exit;
+}
+
 $obj = new Db();
 $page = isset($_GET['p'])? $_GET['p'] : '' ;
 if($page=='view'){
-    $sql = "SELECT bangnhap.id as id, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `chiphi`, `trangthai`, `chat`, `deleted`,tenbacsi as tenbacsi, tenbenh as tenloaibenh, user as tennguoidung, tennguonden as tennguonden, tenphuongthuc as tenphuongthuc FROM bangnhap INNER JOIN bacsi ON bangnhap.id_bacsi = bacsi.id INNER JOIN loaibenh ON bangnhap.id_loaibenh = loaibenh.id INNER JOIN nguoidung ON bangnhap.id_nguoidung = nguoidung.id INNER JOIN nguonden ON bangnhap.id_nguonden = nguonden.id INNER JOIN phuongthuc ON bangnhap.id_phuongthuc = phuongthuc.id WHERE bangnhap.deleted != '1' ORDER BY bangnhap.id DESC";
+    $sql = "SELECT bangnhap.id as id, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `chiphi`, `id_trangthai`, `chat`, `deleted`,tenbacsi as tenbacsi, tenbenh as tenloaibenh, user as tennguoidung, tennguonden as tennguonden, tenphuongthuc as tenphuongthuc FROM bangnhap INNER JOIN bacsi ON bangnhap.id_bacsi = bacsi.id INNER JOIN loaibenh ON bangnhap.id_loaibenh = loaibenh.id INNER JOIN nguoidung ON bangnhap.id_nguoidung = nguoidung.id INNER JOIN nguonden ON bangnhap.id_nguonden = nguonden.id INNER JOIN phuongthuc ON bangnhap.id_phuongthuc = phuongthuc.id INNER JOIN trangthai on bangnhap.id_trangthai = trangthai.id WHERE bangnhap.deleted != '1' ORDER BY bangnhap.id DESC";
     $rows = $obj->select($sql);
    foreach($rows as $row){
         ?>
@@ -24,7 +32,19 @@ if($page=='view'){
             <td><?php echo $row['tennguonden'] ?></td>
             <td><?php echo $row['tenphuongthuc'] ?></td>
             <td><?php if($row['chiphi'] == NULL){echo $row['chiphi'];}else echo number_format($row['chiphi']); ?></td>
-            <td><?php echo $row['trangthai'] ?></td>
+            <td id="<?php if($row['id_trangthai'] == 1){
+                echo "blackmassage";
+            }else if($row['id_trangthai'] == 2){
+                echo "bluemassage";
+            }else if($row['id_trangthai'] == 3){
+                echo "orangemassage";
+            }else echo "greymassage"; ?>"><?php if($row['id_trangthai'] == 1){
+                echo "<p class='black-messsage'>Chưa xác định</p>";
+            }else if($row['id_trangthai'] == 2){
+                echo "<p class='black-messsage'>Đang chờ</p>";
+            }else if($row['id_trangthai'] == 3){
+                echo "<p class='black-messsage'>Đã đến</p>";
+            }else echo "<p class='black-messsage'>Dời lịch</p>"; ?></td>
         </tr>
         <?php
     }
@@ -51,9 +71,11 @@ if($page=='view'){
                     `id_bacsi` = :bacsi,
                     `id_nguonden` = :nguonden,
                     `id_phuongthuc` = :phuongthuc,
-                    `chiphi` = :chiphi
+                    `chiphi` = :chiphi,
+                    `id_trangthai` = :trangthai
                 WHERE `id` = :id";
         $arr[":id"] = $input['id'];
+        $arr[":trangthai"] = $input['trangthai'];
         $arr[":chiphi"] = $input['chiphi'];
         $arr[":phuongthuc"] = $input['phuongthuc'];
         $arr[":nguonden"] = $input['nguonden'];
@@ -74,9 +96,11 @@ if($page=='view'){
         $arr[":hoten"] = $input['hoten'];
         $obj->select($sql, $arr);
     } else if ($input['action'] == 'delete') {
-        $mysqli->query("UPDATE tabledit SET deleted=1 WHERE id='" . $input['id'] . "'");
+        $obj = new Db();
+        $namy = "UPDATE bangnhap SET deleted=1 WHERE id='" . $input['id'] . "'";
+        $obj->select($namy);
     } else if ($input['action'] == 'restore') {
-        $mysqli->query("UPDATE tabledit SET deleted=0 WHERE id='" . $input['id'] . "'");
+        
     }
 
     mysqli_close($mysqli);

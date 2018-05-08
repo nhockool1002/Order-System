@@ -111,13 +111,13 @@ span.label.label-danger {
     content: "\f101";
     font-family: FontAwesome;
 }
-span.state-message-loaibenh {
+span.state-message-loaibenh,span.state-message-bacsi,span.state-message-nguonden,span.state-message-phuongthuc {
     font-family: FontAwesome;
 }
-.button-zone-addbenh {
+.button-zone-addbenh,.button-zone-addbacsi,.button-zone-addnguonden,.button-zone-addphuongthuc {
     text-align: center;
 }
-.state-check-loaibenh {
+.state-check-loaibenh,.state-check-bacsi,.state-check-nguonden,.state-check-phuongthuc {
     text-align: center;
 }
 span.orange-message {
@@ -144,4 +144,36 @@ span.purple-message {
     font-weight: bolder;
     color: purple;
     font-size: 20px;
+}
+.col-sm-12.box-alert {
+    background-color: #ffb9b9;
+    border: 1px solid #b55858;
+    border-radius: 10px;
+    height: 25px;
+    text-align: center;
+    margin-bottom: 35px;
+    display:none;
+}
+td#bluemassage {
+    background-color: #047bfc;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}
+td#blackmassage {
+    background-color: #474747;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}
+td#greymassage {
+    background-color: grey;
+    color: yellow;
+    font-weight: bolder;
+    text-align: center;
+}
+td#orangemassage {
+    background-color: orange;
+    text-align: center;
+    font-weight: bolder;
 }

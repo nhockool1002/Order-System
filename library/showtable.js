@@ -52,6 +52,15 @@ $.get('ajax/getdata-phuongthuc.php',function(data){
     });
     window.ObjPhuongThuc = JSON.stringify(result);
 });
+window.ObjTrangThai;
+$.get('ajax/getdata-trangthai.php',function(data){
+    var obj = JSON.parse(data);
+    var result = {};
+    obj.map(function(e){
+    result[e.id] = e.trangthai;
+    });
+    window.ObjTrangThai = JSON.stringify(result);
+});
 function tableData(){
     
         $('#tabledit').Tabledit({
@@ -97,10 +106,11 @@ function tableData(){
                 [11, 'nguonden', window.ObjNguonDen],
                 [12, 'phuongthuc', window.ObjPhuongThuc],
                 [13, 'chiphi'],
+                [14, 'trangthai', window.ObjTrangThai]
             ]
             },
             onSuccess: function(data, textStatus, jqXHR) {
-                viewData()              
+                viewData().reload();              
             },
             onFail: function(jqXHR, textStatus, errorThrown) {
                 console.log('onFail(jqXHR, textStatus, errorThrown)');

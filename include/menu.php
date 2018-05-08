@@ -15,9 +15,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?page=themloaibenh">Thêm loại bệnh</a>
-          <a class="dropdown-item" href="#">Thêm bác sĩ</a>
-          <a class="dropdown-item" href="#">Thêm nguốn đến</a>
-          <a class="dropdown-item" href="#">Thêm phương thức</a>
+          <a class="dropdown-item" href="index.php?page=thembacsi">Thêm bác sĩ</a>
+          <a class="dropdown-item" href="index.php?page=themnguonden">Thêm nguốn đến</a>
+          <a class="dropdown-item" href="index.php?page=themphuongthuc">Thêm phương thức</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Thêm người dùng</a>
         </div>

@@ -119,7 +119,7 @@ if (typeof jQuery === 'undefined') {
                             }
 
                             // Create span element.
-                            var span = '<span class="tabledit-span">' + text + '</span>';
+                            var span = '<span class="tabledit-span kangcode">' + text + '</span>';
 
                             // Check if exists the third parameter of editable array.
                             if (typeof settings.columns.editable[i][2] !== 'undefined') {
