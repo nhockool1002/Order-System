@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION['kangcode_user'])){
+    header('Location:index.php?page=login');
+}
+?>
 <div class="container-fluid" style="margin-top:35px">
         <table id="tabledit" class="table table-bordered table-striped table-content">
             <thead>

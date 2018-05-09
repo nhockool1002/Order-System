@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" style="margin-left:10px;">
-        <a class="nav-link btn btn-success" href="#"> Nhập dữ liệu<span class="sr-only">(current)</span></a>
+        <a class="nav-link btn btn-success" href="index.php?page=nhapdulieu"> Nhập dữ liệu<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-left:10px">
@@ -23,7 +23,11 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+      <?php if(isset($_SESSION['kangcode_user'])){ ?>
+        <a class="nav-link btn btn-warning" href="index.php?page=logout" style="margin-left:10px">Thoát</a>
+      <?php }else{ ?>     
+        <a class="nav-link btn btn-danger" href="index.php?page=login" style="margin-left:10px">Đăng nhập</a>
+      <?php } ?>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

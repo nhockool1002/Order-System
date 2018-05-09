@@ -14,6 +14,15 @@
                                 case "themphuongthuc" :
                                     require_once("include/content/content-addphuongthuc.php");
                                     break;
+                                case "login" :
+                                    require_once("include/content/content-login.php");
+                                    break;
+                                case "logout" :
+                                    require_once("include/content/content-logout.php");
+                                    break;
+                                case "nhapdulieu" :
+                                    require_once("include/content/content-nhaplieu.php");
+                                    break;
                                 default :
                                 require_once("include/content/content-404.php");
                             }

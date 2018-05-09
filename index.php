@@ -1,11 +1,11 @@
 <?php
 ob_start();
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 session_start();
 include ("config/config.php");
 include ROOT."/include/functions.php";
 spl_autoload_register("loadClass");
 $db= new Db();
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ $db= new Db();
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="library/particles.css">
     <link rel="stylesheet" href="library/style.css" />
 </head>
 <body <?php if(!isset($_GET['page'])){ echo 'onload="viewData()"';}?>>
@@ -36,7 +37,7 @@ $db= new Db();
             <?php require_once ROOT."/include/sidebar.php"; ?>
             </section>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-10 <?php if(isset($_GET['page']) && $_GET['page'] == 'login'){ echo "nopadding";}?>">
             <section class="content-primary">
             <?php require_once ROOT."/include/content.php"; ?>
             </section>
@@ -44,6 +45,12 @@ $db= new Db();
         </div>
     </div>
     </section>
+    <section class="footer-zone">
+       <div class="footer-div-zone">
+           <p>Developer KangCode</p>
+           <p>ORDERSYSTEM V1.0 - Reserved (C) 2019 -2020 by KangCode
+        </div>
+    </setion>
     <section class="script-zone">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -52,6 +59,7 @@ $db= new Db();
         <script src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
         <script src="library/jquery.tabledit.js"></script>
+        <script src="library/particles.js"></script>
         <?php
         if(!isset($_GET['page'])){
             echo '<script src="library/showtable.js"></script>';

@@ -1,14 +1,18 @@
 <div class="sidebar-zone-div">
-                <div class="sidebar-top-image" style="width:100%;">
+                <div class="sidebar-top-image" style="width:100%;height:180px">
                     <img src="images/sidebartopimages.jpg" style="width:100%"; />
                 </div>
                 <div class="sidebar-username-information">
-                    <p>Tài khoản: <span>KANGCODE</span><span class="option-user"><i class="fa fa-cog"></i></span></p>
+                <?php if(isset($_SESSION['kangcode_user'])){?>
+                    <p>Tài khoản: <span><?php echo $_SESSION['kangcode_user']; ?></span><span class="option-user"><i class="fa fa-cog"></i></span></p>
+                <?php }else{ ?>
+                    <p>Chưa đăng nhập</p>
+                <?php } ?>
                 </div>
                 <div class="sidebar-show-option-user" style="display:none;">
                     <p><a href="#"><i class="fa fa-cog"></i> Xem thông tin</a></p>
                     <p><a href="#"><i class="fa fa-cog"></i> Đổi mật khẩu</a></p>
-                    <p><a href="#"><i class="fa fa-cog"></i>Chưa có nội dung</a></p>
+                    <p><a href="#"><i class="fa fa-cog"></i> Chưa có nội dung</a></p>
                     <p><a href="#"><i class="fa fa-cog"></i> Chưa có nội dung</a></p>
                     <p><a href="#"><i class="fa fa-cog"></i> Chưa có nội dung</a></p>
                 </div>
