@@ -86,6 +86,16 @@ if(!isset($_SESSION['kangcode_user'])){
         </div>
         </div>
         </div>
+    <div class="row">
+    <div class="col-sm-12 text-sm-center">
+    <?php if(isset($_SESSION['flash_err_message'])) { ?>
+            <div class="err-message-login">
+                <p>Không thể nhập được với Mã Số Khám này, vui lòng thử Mã Số Khám khác</p>
+                <?php unset($_SESSION['flash_err_message']); ?>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
 <?php $date = date("Y-m-d");?>
 <input type="hidden" name="thoigiandangky" value="<?php echo $date; ?>" >
 <input type="hidden" name="nguoidung" value="<?php echo $_SESSION['kangcode_user_id']; ?>">

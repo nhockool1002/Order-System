@@ -26,4 +26,53 @@ if(!isset($_SESSION['kangcode_user'])){
             </thead>
             <tbody></tbody>
         </table>
+        <div class="pagination">
+        <?php
+        /* PHÂN TRANG */
+$pgn = new Db();
+$total_sql = "SELECT * FROM bangnhap";
+$pgn->select($total_sql);
+$total = $pgn->getRowCount();
+
+if(isset($_GET['trang'])){
+    $current_page = $_GET['trang'];
+}
+else{
+    $current_page = 1;
+}
+$limit = 10;
+
+$total_page = ceil($total / $limit);
+
+if ($current_page > $total_page){
+    $current_page = $total_page;
+}
+else if ($current_page < 1){
+    $current_page = 1;
+}
+
+$start = ($current_page - 1) * $limit;
+
+        if ($current_page > 1 && $total_page > 1){
+            echo '<a href="index.php?p&trang='.($current_page-1).'">Prev</a>  ';
+        }
+         
+        // Lặp khoảng giữa
+        for ($i = 1; $i <= $total_page; $i++){
+            // Nếu là trang hiện tại thì hiển thị thẻ span
+            // ngược lại hiển thị thẻ a
+            if ($i == $current_page){
+                echo '<span>'.$i.'</span>  ';
+            }
+            else{
+                echo '<a href="index.php?p&trang='.$i.'">'.$i.'</a>  ';
+            }
+        }
+         
+        // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+        if ($current_page < $total_page && $total_page > 1){
+            echo '<a href="index.php?p&trang='.($current_page+1).'">Next</a>  ';
+        }
+        ?>
+        </div>
     </div>

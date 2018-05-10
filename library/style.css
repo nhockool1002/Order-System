@@ -188,6 +188,7 @@ td#orangemassage {
     padding-top: 0%;
     position: absolute;
     bottom: 0;
+    margin-top:100px;
 }
 .form-login {
     width: 405px;
@@ -210,9 +211,70 @@ td#orangemassage {
 .err-message-login {
     margin-top: 10px;
     background-color: red;
+    color:white;
     padding: 10px;
     font-size: 14px;
 }
 .container-fluid.nhapdulieu-box label {
     margin-top: 25px;
+}
+.pagination a {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    background-color: #047bfc;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bolder;
+}
+.pagination span {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    background-color: #757575;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+}
+.pagination {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+td#details-td {
+    width: 1%;
+}
+td#details-td div img {
+    width: 100%;
+}
+a.btn.btn-black {
+    background-color: #adadad;
+    color: black;
+    border: 1px solid #a3a3a3;
+}
+span.contant-right {
+    font-weight: bolder;
+    margin-left: 5px;
+    background-color: #d9ffd9;
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+.box-label-chitiet {
+    background-color: #e3f0ff;
+    padding: 1%;
+}
+.box-label-chitiet p {
+    margin-bottom: 0.5%;
+}
+span.contant-log {
+    display: block;
+    background-color: #dafeda;
+    width: 100%;
+    padding: 0 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+    height: 150px;
+    overflow-x: overlay;
 }

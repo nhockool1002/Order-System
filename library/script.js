@@ -2,6 +2,10 @@ $(document).ready(function(){
    $(".option-user").click(function(){
        $(".sidebar-show-option-user").toggle("slowly");
    });
+   $("td#details-td div img").click(function(){
+    var id = $(this).data("id");
+    alert("OK");
+});
    /* AJAX KIỂM TRA ADD BỆNH */
    $(".kiemtra-addbenh").click(function(e){
     e.preventDefault();

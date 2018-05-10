@@ -23,6 +23,9 @@
                                 case "nhapdulieu" :
                                     require_once("include/content/content-nhaplieu.php");
                                     break;
+                                case "xemchitiet" :
+                                    require_once("include/content/content-xemchitiet.php");
+                                    break;
                                 default :
                                 require_once("include/content/content-404.php");
                             }

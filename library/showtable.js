@@ -1,11 +1,18 @@
 function viewData(){
-    $.ajax({
-        url: 'ajax/process.php?p=view',
-        method: 'GET'
-    }).done(function(data){
-        $('tbody').html(data)
-        tableData()
-    })
+    var trang = window.location.search.substr(2);
+    $.get('ajax/process.php?p=view&trang='+trang,function(data){
+        $('tbody').html(data);
+        tableData();
+    });
+    // $.ajax({
+    //     url: 'ajax/process.php?p=view',
+    //     type: 'GET',
+    //     data:{trang:trang},
+    //     method: 'GET'
+    // }).done(function(data){
+    //     $('tbody').html(data)
+    //     tableData()
+    // })
 }
 window.ObjLoaiBenh;
 $.get('ajax/getdata-loaibenh.php',function(data){

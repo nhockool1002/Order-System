@@ -3,22 +3,53 @@ include ("../config/config.php");
 include ROOT."/include/functions.php";
 spl_autoload_register("loadClass");
 
-$mysqli = new mysqli('localhost', 'root', '', 'dathen');
+$trang = $_GET['trang'];
 
-if (mysqli_connect_errno()) {
-  echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
-  exit;
+
+// $mysqli = new mysqli('localhost', 'root', '', 'dathen');
+
+// if (mysqli_connect_errno()) {
+//   echo json_encode(array('mysqli' => 'Failed to connect to MySQL: ' . mysqli_connect_error()));
+//   exit;
+// }
+/* PHÂN TRANG */
+$pgn = new Db();
+$total_sql = "SELECT * FROM bangnhap";
+$pgn->select($total_sql);
+$total = $pgn->getRowCount();
+
+if(isset($_GET['trang'])){
+    $current_page = $_GET['trang'];
 }
+else{
+    $current_page = 1;
+}
+$limit = 14;
+
+$total_page = ceil($total / $limit);
+
+if ($current_page > $total_page){
+    $current_page = $total_page;
+}
+else if ($current_page < 1){
+    $current_page = 1;
+}
+
+$start = ($current_page - 1) * $limit;
 
 $obj = new Db();
 $page = isset($_GET['p'])? $_GET['p'] : '' ;
 if($page=='view'){
-    $sql = "SELECT bangnhap.id as id, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `chiphi`, `id_trangthai`, `chat`, `deleted`,tenbacsi as tenbacsi, tenbenh as tenloaibenh, user as tennguoidung, tennguonden as tennguonden, tenphuongthuc as tenphuongthuc FROM bangnhap INNER JOIN bacsi ON bangnhap.id_bacsi = bacsi.id INNER JOIN loaibenh ON bangnhap.id_loaibenh = loaibenh.id INNER JOIN nguoidung ON bangnhap.id_nguoidung = nguoidung.id INNER JOIN nguonden ON bangnhap.id_nguonden = nguonden.id INNER JOIN phuongthuc ON bangnhap.id_phuongthuc = phuongthuc.id INNER JOIN trangthai on bangnhap.id_trangthai = trangthai.id WHERE bangnhap.deleted != '1' ORDER BY bangnhap.id DESC";
+    if(isset($_GET['trang'])){
+        $current_page = $_GET['trang'];
+        echo $current_page;
+    }
+    $sql = "SELECT bangnhap.id as id, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `chiphi`, `id_trangthai`, `chat`, `deleted`,tenbacsi as tenbacsi, tenbenh as tenloaibenh, user as tennguoidung, tennguonden as tennguonden, tenphuongthuc as tenphuongthuc FROM bangnhap INNER JOIN bacsi ON bangnhap.id_bacsi = bacsi.id INNER JOIN loaibenh ON bangnhap.id_loaibenh = loaibenh.id INNER JOIN nguoidung ON bangnhap.id_nguoidung = nguoidung.id INNER JOIN nguonden ON bangnhap.id_nguonden = nguonden.id INNER JOIN phuongthuc ON bangnhap.id_phuongthuc = phuongthuc.id INNER JOIN trangthai on bangnhap.id_trangthai = trangthai.id WHERE bangnhap.deleted != '1'  ORDER BY bangnhap.id DESC LIMIT $start, $limit";
     $rows = $obj->select($sql);
    foreach($rows as $row){
         ?>
        <tr>
-            <td></td>
+            <td id="details-td"><div><a href="index.php?page=xemchitiet&id=<?php echo $row['id'] ?>" class="btn btn-black"><i class="fa fa-arrow-circle-o-down"></i></a></div></td>
             <td><?php echo $row['id'] ?></td>
             <td><?php echo $row['hoten'] ?></td>
             <td><?php echo $row['dienthoai'] ?></td>
@@ -31,7 +62,7 @@ if($page=='view'){
             <td><?php echo $row['tennguoidung'] ?></td>
             <td><?php echo $row['tennguonden'] ?></td>
             <td><?php echo $row['tenphuongthuc'] ?></td>
-            <td><?php if($row['chiphi'] == NULL){echo $row['chiphi'];}else echo number_format($row['chiphi']); ?></td>
+            <td><?php if($row['chiphi'] == NULL){echo $row['chiphi'];}else echo $row['chiphi']; ?></td>
             <td id="<?php if($row['id_trangthai'] == 1){
                 echo "blackmassage";
             }else if($row['id_trangthai'] == 2){
