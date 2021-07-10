@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 08, 2018 lúc 12:06 PM
--- Phiên bản máy phục vụ: 10.1.25-MariaDB
--- Phiên bản PHP: 5.6.31
+-- Máy chủ: localhost:8889
+-- Thời gian đã tạo: Th7 10, 2021 lúc 02:23 PM
+-- Phiên bản máy phục vụ: 5.7.32
+-- Phiên bản PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `dathen`
+-- Cơ sở dữ liệu: `ors`
 --
 
 -- --------------------------------------------------------
@@ -74,8 +73,9 @@ CREATE TABLE `bangnhap` (
 --
 
 INSERT INTO `bangnhap` (`id`, `hoten`, `dienthoai`, `masokham`, `thoigiandangky`, `thoigiandathen`, `thoigiandenkham`, `id_loaibenh`, `id_bacsi`, `id_nguoidung`, `id_nguonden`, `id_phuongthuc`, `id_trangthai`, `chiphi`, `chat`, `deleted`) VALUES
-(5, 'Nhựt', '01228938041', 'HD901', '2018-05-16 00:00:00', NULL, NULL, 4, 3, 1, 1, 1, 2, '', NULL, 0),
-(6, 'Thương', '01225458658', 'HD325', '2018-05-02 00:00:00', '2018-05-05 00:00:00', NULL, 1, 2, 1, 2, 2, 3, NULL, NULL, 0);
+(5, 'Nhựt', '01228938041', 'HD901', '2018-05-16 00:00:00', NULL, NULL, 4, 3, 1, 1, 1, 4, '', NULL, 0),
+(6, 'Thương', '01225458658', 'HD325', '2018-05-02 00:00:00', '2018-05-05 00:00:00', NULL, 1, 2, 1, 2, 2, 2, '', NULL, 0),
+(7, 'Lê Văn Hoa', '0778899291', '18283', '2021-07-10 00:00:00', '2021-07-10 00:00:00', '2021-07-12 00:00:00', 3, 3, 1, 2, 2, 1, '20000000', 'naipeesaj: https://uptobox.com/njlf6dvbhrkl4 link_live | | null | VNZ.Team', 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,8 @@ INSERT INTO `loaibenh` (`id`, `tenbenh`) VALUES
 (2, 'Hôi Nách'),
 (3, 'Nam Khoa'),
 (4, 'Viêm bao quy đầu'),
-(5, 'Viêm Tinh Hoàn');
+(5, 'Viêm Tinh Hoàn'),
+(6, 'Phụ Khoa');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,7 @@ CREATE TABLE `nguoidung` (
 --
 
 INSERT INTO `nguoidung` (`id`, `user`, `password`, `id_phanquyen`) VALUES
-(1, 'nhockool1002', '6ac66b5cb3d198e4587a747c13ac3c9d', 1);
+(1, 'admin', '96e79218965eb72c92a549dd5a330112', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,8 @@ CREATE TABLE `nguonden` (
 
 INSERT INTO `nguonden` (`id`, `tennguonden`) VALUES
 (1, 'Google'),
-(2, 'Facebook');
+(2, 'Facebook'),
+(4, 'Zalo');
 
 -- --------------------------------------------------------
 
@@ -267,41 +269,49 @@ ALTER TABLE `trangthai`
 --
 ALTER TABLE `bacsi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT cho bảng `bangnhap`
 --
 ALTER TABLE `bangnhap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT cho bảng `loaibenh`
 --
 ALTER TABLE `loaibenh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT cho bảng `nguonden`
 --
 ALTER TABLE `nguonden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT cho bảng `phanquyen`
 --
 ALTER TABLE `phanquyen`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT cho bảng `phuongthuc`
 --
 ALTER TABLE `phuongthuc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT cho bảng `trangthai`
 --
 ALTER TABLE `trangthai`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
