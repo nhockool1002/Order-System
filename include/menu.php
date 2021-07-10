@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">HỆ THỐNG ĐẶT HẸN</a><span class="label label-danger">v1.0</span>
+  <a class="navbar-brand" href="#">ORDER SYSTEM</a><span class="label label-danger">v1.0</span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,9 +17,8 @@
           <a class="dropdown-item" href="index.php?page=themloaibenh">Thêm loại bệnh</a>
           <a class="dropdown-item" href="index.php?page=thembacsi">Thêm bác sĩ</a>
           <a class="dropdown-item" href="index.php?page=themnguonden">Thêm nguốn đến</a>
-          <a class="dropdown-item" href="index.php?page=themphuongthuc">Thêm phương thức</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Thêm người dùng</a>
+          <a class="dropdown-item" href="index.php?page=themphuongthuc">Thêm phương thức</a>
         </div>
       </li>
       <li class="nav-item">
@@ -30,7 +29,7 @@
       <?php } ?>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" method="get" action="index.php">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
     </form>

@@ -9,18 +9,15 @@
                     <p>Chưa đăng nhập</p>
                 <?php } ?>
                 </div>
-                <div class="sidebar-show-option-user" style="display:none;">
+                <!-- <div class="sidebar-show-option-user" style="display:none;">
                     <p><a href="#"><i class="fa fa-cog"></i> Xem thông tin</a></p>
                     <p><a href="#"><i class="fa fa-cog"></i> Đổi mật khẩu</a></p>
-                    <p><a href="#"><i class="fa fa-cog"></i> Chưa có nội dung</a></p>
-                    <p><a href="#"><i class="fa fa-cog"></i> Chưa có nội dung</a></p>
-                    <p><a href="#"><i class="fa fa-cog"></i> Chưa có nội dung</a></p>
-                </div>
-                <div class="sidebar-left-menu">
+                </div> -->
+                <!-- <div class="sidebar-left-menu">
                     <p><a href="#"><i class="fa fa-home"></i> Trang chủ</a></p>
                     <p><a href="#"><i class="fa fa-user"></i> Profile</a></p>
                     <p><a href="#"><i class="fa fa-comment"></i> Emtpy</a><span class="sidebar-menu-option"><a href="#"><i class="fa fa-plus"></i></a></span></p>
                     <p><a href="#"><i class="fa fa-database"></i> Emtpy</a><span class="sidebar-menu-option"><a href="#"><i class="fa fa-plus"></i></a></span></p>
                     <p><a href="#"><i class="fa fa-picture-o"></i> Emtpy</a><span class="sidebar-menu-option"><a href="#"><i class="fa fa-plus"></i></a></span></p>
-                </div>
+                </div> -->
 </div>
